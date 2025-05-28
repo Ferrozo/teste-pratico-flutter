@@ -9,11 +9,15 @@ class EmailInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      style: TextStyle(
+        color: Theme.of(context).colorScheme.onTertiary
+      ),
       validator: validator,
       controller: email,
       keyboardType: TextInputType.emailAddress,
       decoration: InputDecoration(
         hintText: "Insira o seu email.",
+        hintStyle: Theme.of(context).textTheme.labelMedium,
         filled: true,
         fillColor: Colors.grey.shade100,
         border: UnderlineInputBorder(

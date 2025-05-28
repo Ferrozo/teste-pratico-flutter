@@ -10,23 +10,26 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  // final user = FirebaseAuth.instance.currentUser;
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 3), () {
-      // ignore: use_build_context_synchronously
+    _checkLoginStatus();
+  }
+
+  Future<void> _checkLoginStatus() async {
+   
+    await Future.delayed(const Duration(seconds: 2));
+
+    if (!mounted) return;
+
       context.go('/onboardPage');
-    });
   }
 
   @override
   Widget build(BuildContext context) {
     final appLogo = AppAssets.appTextLogo;
     return Scaffold(
-      body: SafeArea(
-        child: Center(child: Image.asset(appLogo, width: 120)),
-      ),
+      body: SafeArea(child: Center(child: Image.asset(appLogo, width: 120))),
     );
   }
 }

@@ -20,7 +20,9 @@ class MainTextButton extends StatelessWidget {
               )
 
           ),
-          onPressed: ()=> onPressed,
+          onPressed: (){
+            onPressed();
+          },
           child: Text(
               title,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith( 

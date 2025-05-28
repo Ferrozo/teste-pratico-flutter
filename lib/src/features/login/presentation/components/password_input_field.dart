@@ -19,11 +19,13 @@ class _PasswordInputFieldState extends State<PasswordInputField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      style: Theme.of(context).textTheme.labelMedium,
       validator: widget.validator,
       controller: widget.password,
       obscureText: isObscure,
       decoration: InputDecoration(
         hintText: "Insira a sua senha.",
+        hintStyle: Theme.of(context).textTheme.labelMedium,
         filled: true,
         fillColor: Colors.grey.shade100,
         border:  UnderlineInputBorder(
@@ -31,6 +33,7 @@ class _PasswordInputFieldState extends State<PasswordInputField> {
             color: Colors.transparent
           ),
         ),
+        suffixIconColor: Theme.of(context).colorScheme.onTertiary,
         enabledBorder: UnderlineInputBorder(
            borderSide: BorderSide(
             color: Colors.transparent
@@ -41,7 +44,10 @@ class _PasswordInputFieldState extends State<PasswordInputField> {
           setState(() {
             isObscure = !isObscure ;
           });
-        }, icon: Icon(isObscure? Icons.remove_red_eye_sharp: Icons.remove_red_eye_outlined))
+        }, icon: Icon(
+          isObscure? Icons.remove_red_eye_sharp: 
+          Icons.remove_red_eye_outlined),
+          )
       ),
     );
   }

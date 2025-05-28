@@ -16,15 +16,18 @@ final lightTheme = ThemeData(
   brightness: Brightness.light,
   colorScheme: ColorScheme.light(
     primary: AppColors.primaryLight,
+    onTertiary: AppColors.blackColor,
     surface: Colors.white,
     onPrimary: Colors.white,
     onSurface: Colors.black,
+    onSecondary: AppColors.blackColor,
   ),
   scaffoldBackgroundColor: AppColors.backgroundLight,
   cardColor: Colors.white,
   textTheme: TextTheme(
     bodyLarge: TextStyle(color: Colors.black),
     bodyMedium: TextStyle(color: Colors.black87),
+      labelMedium: TextStyle(color: AppColors.backgroundDark)
   ),
 );
 
@@ -41,6 +44,13 @@ final lightTheme = ThemeData(
     surface: AppColors.backgroundDark,
     onPrimary: AppColors.backgroundDark,
     onSurface: AppColors.whiteColor,
+    onTertiary: AppColors.blackColor,
+        onSecondary: AppColors.blackColor,
+  ),
+    textTheme: TextTheme(
+    bodyLarge: TextStyle(color: AppColors.whiteColor),
+    bodyMedium: TextStyle(color: AppColors.whiteColor),
+    labelMedium: TextStyle(color: AppColors.backgroundDark)
   ),
   );
 }

@@ -6,8 +6,10 @@ class OnboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Center(
-      child: TextButton(onPressed: ()=> context.go("/loginPage"), child: Text("Entrar")),
+    return  Scaffold(
+      body: Center(
+        child: TextButton(onPressed: ()=> context.go("/loginPage"), child: Text("Entrar")),
+      ),
     );
   }
 }

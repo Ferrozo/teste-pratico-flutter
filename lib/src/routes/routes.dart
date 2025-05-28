@@ -1,4 +1,7 @@
-import 'package:contactos/src/features/home/presentation/home.dart';
+import 'package:contactos/src/features/home/presentation/components/main_bottom_nav_bar%20.dart';
+import 'package:contactos/src/features/home/presentation/pages/favorite.dart';
+import 'package:contactos/src/features/home/presentation/pages/home.dart';
+import 'package:contactos/src/features/home/presentation/pages/profile.dart';
 import 'package:contactos/src/features/login/presentation/login_screen.dart';
 import 'package:contactos/src/features/onboard/onboard_screen.dart';
 import 'package:contactos/src/features/splash/splash_screen.dart';
@@ -15,5 +18,10 @@ final routes = GoRouter(
     GoRoute(path: '/onboardPage', builder: (context, state) => const OnboardScreen()),
     GoRoute(path: '/loginPage', builder: (context, state) => const LoginScreen()),
     GoRoute(path: '/homeScreen', builder: (context, state) => const HomeScreen()),
+    GoRoute(path: '/profileScreen', builder: (context, state) => const ProfileScreen()),
+    GoRoute(path: '/favoriteScreen', builder: (context, state) => const FavoriteScreen()),
+        GoRoute(
+        path: '/navBarPage',
+        builder: (context, state) => const MainBottomNavBar()),
   ],
 );
