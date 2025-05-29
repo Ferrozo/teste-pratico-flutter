@@ -18,7 +18,7 @@ class AuthLocalDataSource {
     final List<Map<String, dynamic>> maps = await db.query('user', limit: 1);
     if (maps.isNotEmpty) {
       final data = maps.first;
-      return UserEntity(id: data['id'], name: data['name'], email: data['email']);
+      return UserEntity(id: data['id'], name: data['name'], email: data['email'], avatar: data['avatar']);
     }
     return null;
   }

@@ -18,7 +18,7 @@ class AuthCubit extends Cubit<AuthState> {
       final user = await loginUseCase(email, password);
 
       if (user is UserModel) {
-        await localDataSource.saveUser(user, user.token);
+        await localDataSource.saveUser(user, user.token!);
       }
 
       emit(AuthSuccess(user));

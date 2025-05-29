@@ -1,6 +1,11 @@
 //
 
 import 'package:contactos/src/core/helpers/db_helpers.dart';
+import 'package:contactos/src/features/home/data/datasource/contacts_remote_data_source.dart';
+import 'package:contactos/src/features/home/data/repositories/contacts_repository_impl.dart';
+import 'package:contactos/src/features/home/domain/repositories/contacts_repository.dart';
+import 'package:contactos/src/features/home/domain/usecases/get_contacts_use_case.dart';
+import 'package:contactos/src/features/home/presentation/cubit/contacts_cubit.dart';
 import 'package:contactos/src/features/login/data/local/user_local_data_source.dart';
 import 'package:get_it/get_it.dart';
 import 'package:contactos/src/features/login/domain/repositories/auth_repository.dart';
@@ -28,16 +33,22 @@ Future<void> init() async {
   // Datasources
   sl.registerLazySingleton(() => UserLocalDataSource(sl()));
   sl.registerLazySingleton(() => AuthRemoteDataSource(sl()));
+  sl.registerLazySingleton<ContactsRemoteDataSource>(() => ContactsRemoteDataSourceImpl(sl()));
+
 
   // Repositories
   sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(sl()));
+  sl.registerLazySingleton<ContactsRepository>(() => ContactsRepositoryImpl(sl()));
 
   // UseCases
   sl.registerLazySingleton(() => LoginUseCase(sl()));
+  sl.registerLazySingleton(() => GetContactsUseCase(sl()));
 
   // Cubit
   sl.registerFactory(() => AuthCubit(sl(), sl()));
+  sl.registerFactory(() => ContactsCubit(sl()));
 
   // Extern
   sl.registerLazySingleton(() => http.Client());
+
 }

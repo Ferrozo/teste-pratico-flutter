@@ -2,6 +2,7 @@ import 'package:contactos/src/core/theme/app_theme.dart';
 import 'package:contactos/src/core/theme/theme_provider.dart';
 import 'package:contactos/src/di/dependencie_injection.dart' as di;
 import 'package:contactos/src/di/dependencie_injection.dart';
+import 'package:contactos/src/features/home/presentation/cubit/contacts_cubit.dart';
 import 'package:contactos/src/features/login/presentation/auth_cubit/auth_cubit.dart';
 import 'package:contactos/src/routes/routes.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +29,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [BlocProvider(create: (context) => di.sl<AuthCubit>())],
+      providers: [
+        BlocProvider(create: (context) => di.sl<AuthCubit>()),
+        BlocProvider(create: (context) => di.sl<ContactsCubit>())
+        ],
       child: MaterialApp.router(
         routerConfig: routes,
         themeMode: ThemeProvider().themeMode,
