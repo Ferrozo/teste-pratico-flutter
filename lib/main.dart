@@ -16,9 +16,8 @@ import 'package:provider/provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await di.init();             // inicializa GetIt
-  await sl.allReady();         // espera todos os singletons
-
+  await di.init();    
+  await sl.allReady(); 
   runApp(
     ChangeNotifierProvider(
       create: (_) => ThemeProvider(),
@@ -39,7 +38,7 @@ class MyApp extends StatelessWidget {
         ],
       child: MaterialApp.router(
         routerConfig: routes,
-        themeMode: ThemeProvider().themeMode,
+        themeMode: context.watch<ThemeProvider>().themeMode,
         darkTheme: AppTheme().darkTheme,
         theme: AppTheme().lightTheme,
       ),

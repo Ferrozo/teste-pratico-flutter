@@ -1,3 +1,4 @@
+import 'package:contactos/src/core/theme/theme_preferences%20.dart';
 import 'package:flutter/material.dart';
 
 // ************************************************
@@ -5,21 +6,25 @@ import 'package:flutter/material.dart';
 // ************************************************
 
 class ThemeProvider extends ChangeNotifier {
-  ThemeMode _themeMode = ThemeMode.system;
+  ThemeMode _themeMode = ThemeMode.light;
+  final _prefs = ThemePreferences();
+
+  ThemeProvider() {
+    _loadTheme();
+  }
 
   ThemeMode get themeMode => _themeMode;
 
-  //Função para detectar o tema do dispositivo
-  void setThemeMode(ThemeMode mode) {
-    _themeMode = mode;
+  void toggleTheme() async {
+    _themeMode = _themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
     notifyListeners();
+    await _prefs.setTheme(_themeMode == ThemeMode.dark);
   }
 
-  //Função para mudar de tema
-  void toggleTheme() {
-    _themeMode = _themeMode == ThemeMode.light
-        ? ThemeMode.dark
-        : ThemeMode.light;
+  void _loadTheme() async {
+    bool isDark = await _prefs.getTheme();
+    _themeMode = isDark ? ThemeMode.dark : ThemeMode.light;
     notifyListeners();
   }
 }
+
