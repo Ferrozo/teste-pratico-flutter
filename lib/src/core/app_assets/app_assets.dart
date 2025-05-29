@@ -6,6 +6,7 @@ class AppAssets {
 
 
    static String appTextLogo = "assets/icons/logo.png";
+   static String avatar = "assets/icons/avatar.png";
 
   // *******************
   //  IMAGES ASSETS

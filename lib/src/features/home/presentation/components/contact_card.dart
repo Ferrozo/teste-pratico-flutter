@@ -1,3 +1,4 @@
+import 'package:contactos/src/core/app_assets/app_assets.dart';
 import 'package:contactos/src/features/common/domain/entities/user_entity.dart';
 import 'package:contactos/src/features/home/presentation/cubit/contacts_cubit.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,7 @@ class ContactCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
+
     return Container(
       padding: const EdgeInsets.all(15),
       height: 85,
@@ -36,9 +38,21 @@ class ContactCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                CircleAvatar(
-                  backgroundImage: NetworkImage(user.avatar),
-                  radius: 28,
+                ClipOval(
+                  child: user.avatar.isNotEmpty
+                      ? FadeInImage.assetNetwork(
+                          placeholder: AppAssets.avatar,
+                          image: user.avatar,
+                          width: 56,
+                          height: 56,
+                          fit: BoxFit.cover,
+                        )
+                      : Image.asset(
+                          AppAssets.avatar,
+                          width: 56,
+                          height: 56,
+                          fit: BoxFit.cover,
+                        ),
                 ),
                 const SizedBox(width: 15),
                 Column(
@@ -61,18 +75,18 @@ class ContactCard extends StatelessWidget {
                       ],
                     ),
                     Text(
+                      user.email,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      user.email,
-                      style: Theme.of(
-                        context,
-                      ).textTheme.headlineMedium?.copyWith(fontSize: 14),
+                      style: Theme.of(context)
+                          .textTheme
+                          .headlineMedium
+                          ?.copyWith(fontSize: 14),
                     ),
                   ],
                 ),
               ],
             ),
-
             PopupMenuButton<String>(
               icon: const Icon(Icons.more_horiz),
               onSelected: (value) {
