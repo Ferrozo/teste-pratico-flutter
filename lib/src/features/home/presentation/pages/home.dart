@@ -54,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
           BlocBuilder<ContactsCubit, ContactsState>(
             builder: (context, state) {
               if (state is ContactsLoading) {
-                return const Center(child: CircularProgressIndicator());
+                return Expanded(child: const Center(child: CircularProgressIndicator()));
               }
               if (state is ContactsLoaded) {
                 final contacts = state.contacts;
@@ -85,7 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               child: IntrinsicHeight(
                                 child: Padding(
-                                  padding: const EdgeInsets.all(20),
+                                  padding: const EdgeInsets.all(10),
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.stretch,

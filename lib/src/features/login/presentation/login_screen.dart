@@ -16,7 +16,6 @@ class LoginScreen extends StatefulWidget {
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
-
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
@@ -32,17 +31,13 @@ class _LoginScreenState extends State<LoginScreen> {
       body: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state is AuthLoading) {
-            Expanded(child: 
-            Center(
-              child: CircularProgressIndicator(),
-            )
-            );
+            Expanded(child: Center(child: CircularProgressIndicator()));
           } else if (state is AuthSuccess) {
             context.go("/navBarPage");
           } else if (state is AuthFailure) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(state.message)),
-            );
+            ScaffoldMessenger.of(
+              context,
+            ).showSnackBar(SnackBar(content: Text(state.message)));
           }
         },
         builder: (context, state) {
@@ -65,7 +60,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       width: width,
                       decoration: BoxDecoration(
                         color: Theme.of(context).colorScheme.surface,
-                        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(20),
+                        ),
                       ),
                       child: Column(
                         children: [
@@ -75,7 +72,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             width: 60,
                             decoration: BoxDecoration(
                               color: Colors.black.withAlpha(100),
-                              borderRadius: BorderRadius.all(Radius.circular(10)),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10),
+                              ),
                             ),
                           ),
                           SizedBox(height: 30),
@@ -103,16 +102,17 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                                 SizedBox(height: 20),
                                 MainTextButton(
-                                  onPressed: (){
-                                 
-                                          if (_formKey.currentState!.validate()) {
-                                            context
-                                                .read<AuthCubit>()
-                                                .login(email.text, password.text);
-                                          }
-                                       
+                                  onPressed: () {
+                                    if (_formKey.currentState!.validate()) {
+                                      context.read<AuthCubit>().login(
+                                        email.text,
+                                        password.text,
+                                      );
+                                    }
                                   },
-                                  title: state is AuthLoading ? "Entrando..." : "Entrar",
+                                  title: state is AuthLoading
+                                      ? "Entrando..."
+                                      : "Entrar",
                                 ),
                               ],
                             ),

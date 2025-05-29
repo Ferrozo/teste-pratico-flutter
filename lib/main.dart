@@ -15,11 +15,15 @@ import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  di.init();
 
-  await sl.allReady();
+  await di.init();             // inicializa GetIt
+  await sl.allReady();         // espera todos os singletons
+
   runApp(
-    ChangeNotifierProvider(create: (_) => ThemeProvider(), child: MyApp()),
+    ChangeNotifierProvider(
+      create: (_) => ThemeProvider(),
+      child: const MyApp(),
+    ),
   );
 }
 

@@ -9,7 +9,7 @@ class ContactsInitial extends ContactsState {}
 class ContactsLoading extends ContactsState {}
 
 class ContactsLoaded extends ContactsState {
-  final List<UserEntity> contacts;
+final List<UserEntity> contacts;
 
   ContactsLoaded(this.contacts);
 }

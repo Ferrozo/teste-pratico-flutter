@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
- final LoginUseCase loginUseCase;
+  final LoginUseCase loginUseCase;
   final UserLocalDataSource localDataSource;
 
   AuthCubit(this.loginUseCase, this.localDataSource) : super(AuthInitial());
@@ -27,10 +27,13 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  Future<void> checkLoggedUser() async {
+  void checkLoggedUser() async {
     final user = await localDataSource.getUser();
+
     if (user != null) {
       emit(AuthSuccess(user));
+    } else {
+      emit(AuthFailure("Usuário não autenticado"));
     }
   }
 

@@ -17,6 +17,7 @@ class ContactsRemoteDataSourceImpl implements ContactsRemoteDataSource {
   @override
   Future<List<UserModel>> fetchContacts() async {
     final response = await client.get(
+      headers: {'x-api-key': API_KEY, 'Accept': 'application/json'},
       Uri.parse('https://reqres.in/api/users?page=2'),
     );
 

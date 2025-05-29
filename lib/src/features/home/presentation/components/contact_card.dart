@@ -1,9 +1,11 @@
 import 'package:contactos/src/features/common/domain/entities/user_entity.dart';
+import 'package:contactos/src/features/home/presentation/cubit/contacts_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 // ignore: must_be_immutable
 class ContactCard extends StatelessWidget {
-  ContactCard({
+  const ContactCard({
     super.key,
     required this.user,
     required this.onCardClick,
@@ -22,9 +24,7 @@ class ContactCard extends StatelessWidget {
       height: 85,
       width: width,
       decoration: BoxDecoration(
-        border: Border(
-          bottom: BorderSide(color: Colors.grey.withAlpha(100)),
-        ),
+        border: Border(bottom: BorderSide(color: Colors.grey.withAlpha(100))),
       ),
       child: InkWell(
         onTap: () {
@@ -36,48 +36,67 @@ class ContactCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                CircleAvatar(backgroundImage: NetworkImage(user.avatar), radius: 28),
+                CircleAvatar(
+                  backgroundImage: NetworkImage(user.avatar),
+                  radius: 28,
+                ),
                 const SizedBox(width: 15),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      user.name,
-                      style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                          ),
+                    Row(
+                      children: [
+                        Text(
+                          user.name,
+                          style: Theme.of(context).textTheme.headlineMedium
+                              ?.copyWith(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                              ),
+                        ),
+                        const SizedBox(width: 4),
+                        if (user.isFavorite!)
+                          const Icon(Icons.star, color: Colors.amber, size: 18),
+                      ],
                     ),
                     Text(
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                       user.email,
-                      style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                            fontSize: 14,
-                          ),
+                      style: Theme.of(
+                        context,
+                      ).textTheme.headlineMedium?.copyWith(fontSize: 14),
                     ),
                   ],
                 ),
               ],
             ),
 
-            /// Substituímos o IconButton por PopupMenuButton
             PopupMenuButton<String>(
               icon: const Icon(Icons.more_horiz),
               onSelected: (value) {
                 if (value == 'info') {
                   onMoreInfoClick();
+                } else if (value == 'favorite') {
+                  context.read<ContactsCubit>().toggleFavorite(user);
                 } else if (value == 'edit') {
-                  // exemplo: editar
                   debugPrint('Editar ${user.name}');
                 } else if (value == 'delete') {
-                  // exemplo: deletar
                   debugPrint('Deletar ${user.name}');
                 }
               },
               itemBuilder: (context) => [
                 const PopupMenuItem(value: 'info', child: Text('Detalhes')),
                 const PopupMenuItem(value: 'edit', child: Text('Editar')),
-                const PopupMenuItem(value: 'edit', child: Text('Favorito')),
+                PopupMenuItem(
+                  value: 'favorite',
+                  child: Text(
+                    user.isFavorite!
+                        ? 'Remover dos favoritos'
+                        : 'Adicionar aos favoritos',
+                  ),
+                ),
                 const PopupMenuItem(value: 'delete', child: Text('Remover')),
               ],
             ),

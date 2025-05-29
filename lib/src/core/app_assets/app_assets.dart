@@ -11,6 +11,8 @@ class AppAssets {
   //  IMAGES ASSETS
   // *******************
 
+  static String onboard01 = "assets/images/onboard01.jpg";
+
   // LOCAL
 
    static String loginBgImage = "assets/images/intro_bg.jpg";

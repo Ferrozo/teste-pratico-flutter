@@ -3,7 +3,7 @@ import 'package:contactos/src/features/home/presentation/pages/favorite.dart';
 import 'package:contactos/src/features/home/presentation/pages/home.dart';
 import 'package:contactos/src/features/home/presentation/pages/profile.dart';
 import 'package:contactos/src/features/login/presentation/login_screen.dart';
-import 'package:contactos/src/features/onboard/onboard_screen.dart';
+import 'package:contactos/src/features/onboard/presentation/pages/onboard_screen.dart';
 import 'package:contactos/src/features/splash/splash_screen.dart';
 import 'package:go_router/go_router.dart';
 

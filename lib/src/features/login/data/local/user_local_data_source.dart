@@ -14,6 +14,8 @@ class UserLocalDataSource {
         'id': user.id,
         'name': user.name,
         'email': user.email,
+        'last_name': user.lastName,
+        'avatar': user.avatar,
         'token': token,
       },
       conflictAlgorithm: ConflictAlgorithm.replace,

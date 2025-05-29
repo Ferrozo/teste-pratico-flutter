@@ -7,7 +7,9 @@ class UserModel extends UserEntity {
     required super.id,
     required super.name,
     required super.email,
+    required super.lastName,
     required super.avatar,
+     super.isFavorite,
      this.token,
   });
 
@@ -16,7 +18,9 @@ class UserModel extends UserEntity {
       id: json['id'].toString(),
       name: json['first_name'] ?? '',
       email: json['email'],
+      lastName: json['last_name'],
       avatar: json['avatar'],
+      isFavorite: json['is_favorite'],
       token: token,
     );
   }
@@ -27,6 +31,8 @@ class UserModel extends UserEntity {
       name: map['name'],
       email: map['email'],
       avatar: map['avatar'],
+      lastName: map['last_name'],
+      isFavorite: map['is_favorite'],
     );
   }
 
@@ -35,6 +41,7 @@ class UserModel extends UserEntity {
       'id': id,
       'name': name,
       'email': email,
+      'is_favorite': isFavorite,
       'avatar': avatar,
     };
   }

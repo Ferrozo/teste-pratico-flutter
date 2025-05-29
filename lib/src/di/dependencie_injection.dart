@@ -2,6 +2,7 @@
 
 import 'package:contactos/src/core/helpers/db_helpers.dart';
 import 'package:contactos/src/features/home/data/datasource/contacts_remote_data_source.dart';
+import 'package:contactos/src/features/home/data/datasource/local/favorites_local_data_source.dart';
 import 'package:contactos/src/features/home/data/repositories/contacts_repository_impl.dart';
 import 'package:contactos/src/features/home/domain/repositories/contacts_repository.dart';
 import 'package:contactos/src/features/home/domain/usecases/get_contacts_use_case.dart';
@@ -24,17 +25,15 @@ import 'package:sqflite/sqflite.dart';
 final sl = GetIt.instance;
 
 Future<void> init() async {
-  // Inicializa o banco
-  final db = await initDb();
+  final db = await DbHelpers().initDb();
 
-  // Database
   sl.registerLazySingleton<Database>(() => db);
 
   // Datasources
   sl.registerLazySingleton(() => UserLocalDataSource(sl()));
   sl.registerLazySingleton(() => AuthRemoteDataSource(sl()));
   sl.registerLazySingleton<ContactsRemoteDataSource>(() => ContactsRemoteDataSourceImpl(sl()));
-
+  sl.registerLazySingleton(() => FavoritesLocalDataSource(sl()));
 
   // Repositories
   sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(sl()));
@@ -44,11 +43,12 @@ Future<void> init() async {
   sl.registerLazySingleton(() => LoginUseCase(sl()));
   sl.registerLazySingleton(() => GetContactsUseCase(sl()));
 
-  // Cubit
+  // Cubits
   sl.registerFactory(() => AuthCubit(sl(), sl()));
-  sl.registerFactory(() => ContactsCubit(sl()));
+  sl.registerFactory(() => ContactsCubit(sl(), sl()));
 
   // Extern
   sl.registerLazySingleton(() => http.Client());
 
 }
+
