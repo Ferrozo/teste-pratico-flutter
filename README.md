@@ -71,10 +71,10 @@ lib/
 
 ```bash
 # 1. Clone o repositório
-git clone https://github.com/seu-usuario/biscato-app.git
+git https://github.com/Ferrozo/teste-pratico-flutter
 
 # 2. Acesse a pasta
-cd biscato-app
+cd teste-pratico-flutter
 
 # 3. Instale as dependências
 flutter pub get
