@@ -53,7 +53,7 @@ class ContactsCubit extends Cubit<ContactsState> {
       await favoritesLocalDataSource.addFavorite(user.id);
     }
 
-    await fetchContacts(); // recarrega com novo estado
+    await fetchContacts(); 
   }
 }
 
