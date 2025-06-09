@@ -38,7 +38,7 @@ class _MainBottomNavBarState extends State<MainBottomNavBar> {
             ))),
         child: BottomNavigationBar(
           elevation: 0,
-          iconSize: 20,
+          iconSize: 30,
           type: BottomNavigationBarType.fixed,
           backgroundColor: Colors.transparent,
           showUnselectedLabels: true,
@@ -50,7 +50,7 @@ class _MainBottomNavBarState extends State<MainBottomNavBar> {
           },
           currentIndex: _currentIndex,
           items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Inicio'),
+            BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: 'Inicio'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.favorite), label: 'Favoritos'),
             BottomNavigationBarItem(

@@ -36,14 +36,13 @@ class ProfileUserCard extends StatelessWidget {
                     ? FadeInImage.assetNetwork(
                         placeholder: AppAssets.avatar,
                         image: user.avatar,
-                        width: 70,
-                        height: 70,
+                          imageScale: 1,                        
                         fit: BoxFit.cover,
                       )
                     : Image.asset(
                         AppAssets.avatar,
-                        width: 70,
-                        height: 70,
+                        width: 60,
+                        height: 60,
                         fit: BoxFit.cover,
                       ),
               ),
